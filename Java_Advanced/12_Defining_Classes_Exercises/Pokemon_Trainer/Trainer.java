@@ -2,7 +2,6 @@ package Pokemon_Trainer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class Trainer {
@@ -13,10 +12,6 @@ public class Trainer {
     public Trainer() {
         this.badgesCount = 0;
         this.pokemons = new ArrayList<>();
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getBadgesCount() {
@@ -37,9 +32,4 @@ public class Trainer {
                 .filter(pokemon -> pokemon.getHealth() > 0)
                 .collect(Collectors.toList());
     }
-
-    public void deal10Damage(){
-        this.pokemons.forEach(p -> p.setHealth(p.getHealth() - 10));
-    }
-
 }

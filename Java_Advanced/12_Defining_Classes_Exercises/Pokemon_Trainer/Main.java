@@ -28,14 +28,12 @@ public class Main {
         while (!(input2 = scan.nextLine()).equals("End")) {
 
             for (Map.Entry<String, Trainer> trainer : trainers.entrySet()) {
-                int n = pokCount(trainer.getValue().getPokemons(), input2);
-                trainer.getValue().addBadge(n);
-                if (n == 0) {
-                    trainer.getValue().getPokemons().forEach(p -> {
-                        p.setHealth(p.getHealth() - 10);
-                    });
+                if (!hasOne(trainer.getValue().getPokemons(), input2)) {
+                    deal10Damage(trainer);
+                    trainer.getValue().removeDead();
+                }else {
+                    trainer.getValue().addBadge(1);
                 }
-                trainer.getValue().removeDead();
             }
         }
 
@@ -45,14 +43,18 @@ public class Main {
                 .forEach(e -> System.out.printf("%s %d %d\n", e.getKey(), e.getValue().getBadgesCount(), e.getValue().getPokemons().size()));
     }
 
-    public static int pokCount(List<Pokemon> pokemons, String element) {
-        int count = 0;
+    private static void deal10Damage(Map.Entry<String, Trainer> trainer) {
+        trainer.getValue().getPokemons().forEach(p -> {
+            p.setHealth(p.getHealth() - 10);
+        });
+    }
+
+    public static boolean hasOne(List<Pokemon> pokemons, String element) {
         for (Pokemon pokemon : pokemons) {
             if (pokemon.getElement().equals(element)) {
-                count = 1;
-                break;
+                return true;
             }
         }
-        return count;
+        return false;
     }
 }
