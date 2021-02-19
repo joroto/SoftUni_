@@ -24,7 +24,6 @@ public class Main {
         }
 
         String input2;
-
         while (!(input2 = scan.nextLine()).equals("End")) {
 
             for (Map.Entry<String, Trainer> trainer : trainers.entrySet()) {
@@ -32,7 +31,7 @@ public class Main {
                     deal10Damage(trainer);
                     trainer.getValue().removeDead();
                 }else {
-                    trainer.getValue().addBadge(1);
+                    trainer.getValue().addBadge();
                 }
             }
         }

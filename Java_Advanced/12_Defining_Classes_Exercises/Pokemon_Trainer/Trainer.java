@@ -22,8 +22,8 @@ public class Trainer {
         return pokemons;
     }
 
-    public void addBadge(int badge){
-        this.badgesCount += badge;
+    public void addBadge(){
+        this.badgesCount++;
     }
 
     public void removeDead(){
