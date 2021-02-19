@@ -43,9 +43,7 @@ public class Main {
     }
 
     private static void deal10Damage(Map.Entry<String, Trainer> trainer) {
-        trainer.getValue().getPokemons().forEach(p -> {
-            p.setHealth(p.getHealth() - 10);
-        });
+        trainer.getValue().getPokemons().forEach(p -> p.setHealth(p.getHealth() - 10));
     }
 
     public static boolean hasOne(List<Pokemon> pokemons, String element) {
