@@ -1,4 +1,4 @@
-package Generic_Swap_Method_Strings;
+package Generic_Swap_Method_Integers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,12 +10,11 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         int n = Integer.parseInt(scan.nextLine());
-        
-        List<String> list= new ArrayList<>();
+        List<Integer> list= new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            String words = scan.nextLine();
-            list.add(words);
+            int number = Integer.parseInt(scan.nextLine());
+            list.add(number);
         }
 
         int[] numbers = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
