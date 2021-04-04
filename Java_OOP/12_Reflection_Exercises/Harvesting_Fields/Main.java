@@ -17,9 +17,10 @@ public class Main {
 
 			if(input.equals("all")){
 				Arrays.stream(fields).forEach(Main::print);
-			}
-			Arrays.stream(fields).filter(f -> (Modifier.toString(f.getModifiers())).equals(finalInput1))
+			}else {
+				Arrays.stream(fields).filter(f -> (Modifier.toString(f.getModifiers())).equals(finalInput1))
 						.forEach(Main::print);
+			}
 		}
 	}
 	private static String print(Field field){
