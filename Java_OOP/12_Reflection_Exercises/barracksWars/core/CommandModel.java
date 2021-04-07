@@ -39,13 +39,20 @@ public class CommandModel implements CommandInterpreter {
     }
 
     private void injectFields(Executable executable, String[] data) {
-        Field[] declaredFields = executable.getClass().getDeclaredFields();
+        try {
+            Field[] declaredFields = executable.getClass().getDeclaredFields();
 
-        for (Field declaredField : declaredFields) {
-            if(declaredField.getType() == String[].class){
+            for (Field declaredField : declaredFields) {
                 declaredField.setAccessible(true);
-                //TODO: Inject fields
+                if (declaredField.getType() == String[].class) {
+                    declaredField.set(executable, data);
+                }else if(declaredField.getType() == Repository.class){
+                    declaredField.set(executable, this.repository);
+                }else if(declaredField.getType() == UnitFactory.class){
+                    declaredField.set(executable, this.factory);
+                }
             }
+        }catch (Exception ignored){
         }
     }
 }
