@@ -1,16 +1,13 @@
 package barracksWars.core.commands;
 
-import barracksWars.interfaces.Repository;
-import barracksWars.interfaces.UnitFactory;
-import jdk.jshell.spi.ExecutionControl;
+import barracksWars.interfaces.Executable;
 
-public class Fight extends Command{
-    public Fight(String[] data, Repository repository, UnitFactory unitFactory) {
-        super(data, repository, unitFactory);
+public class Fight implements Executable {
+    public Fight() {
     }
 
     @Override
-    public String execute() throws ExecutionControl.NotImplementedException {
+    public String execute(){
         return "fight";
     }
 }

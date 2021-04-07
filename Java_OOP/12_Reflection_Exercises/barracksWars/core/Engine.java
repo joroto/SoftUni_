@@ -15,9 +15,10 @@ public class Engine implements Runnable {
 	private Repository repository;
 	private UnitFactory unitFactory;
 
-	public Engine(Repository repository, UnitFactory unitFactory) {
-		this.repository = repository;
-		this.unitFactory = unitFactory;
+	private CommandInterpreter commandInterpreter;
+
+	public Engine(CommandInterpreter commandInterpreter) {
+		this.commandInterpreter = commandInterpreter;
 	}
 
 	@Override
@@ -29,7 +30,8 @@ public class Engine implements Runnable {
 				String input = reader.readLine();
 				String[] data = input.split("\\s+");
 				String commandName = data[0];
-				String result = interpretCommand(data, commandName);
+				String result =
+						commandInterpreter.interpretCommand(data, commandName).execute();
 				if (result.equals("fight")) {
 					break;
 				}
@@ -44,21 +46,7 @@ public class Engine implements Runnable {
 
 	// TODO: refactor for problem 4
 	private String interpretCommand(String[] data, String commandName) throws ExecutionControl.NotImplementedException {
-		Executable executable;
 
-		commandName = Character.toUpperCase(commandName.charAt(0)) + commandName.substring(1);
-
-		try {
-			Class<? extends Executable> clazz =
-					(Class<? extends Executable>) Class.forName("barracksWars.core.commands."
-							+ commandName);
-			Constructor<? extends Executable> ctor = clazz.getDeclaredConstructor(String[].class, Repository.class, UnitFactory.class);
-			executable = ctor.newInstance(data, repository, unitFactory);
-		}catch (Exception e){
-			throw new IllegalStateException(e);
-		}
-
-		return executable.execute();
 	}
 
 }
