@@ -41,5 +41,4 @@ public class Rhombus_Of_Stars {
             System.out.println();
         }
     }
-
 }
