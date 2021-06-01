@@ -20,6 +20,7 @@ CREATE TABLE products (
     FOREIGN KEY (category_id)
         REFERENCES categories (id)
 );
+
 # Inserting data in tables
 INSERT employees
 VALUES ('25', 'pesho', 'peshev');
