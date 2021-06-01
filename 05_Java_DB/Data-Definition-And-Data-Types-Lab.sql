@@ -36,7 +36,7 @@ DELETE FROM employees
 WHERE
     id = 25;
 
-# Dropping table
+# Dropping a table
 DROP TABLE employees;
 
 # Dropping the database
